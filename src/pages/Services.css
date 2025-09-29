@@ -1,0 +1,473 @@
+/* Services Page Styles */
+.services-page {
+  padding-top: 70px;
+}
+
+/* Hero Section */
+.services-hero {
+  background: var(--gradient-dark);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.services-hero-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.services-hero-description {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.services-hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--secondary-color);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Detailed Services Grid */
+.services-detailed-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.service-detailed-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+  padding: 3rem;
+  border-left: 6px solid var(--primary-color);
+  transition: var(--transition);
+}
+
+.service-detailed-card:hover {
+  box-shadow: var(--shadow-heavy);
+  transform: translateY(-2px);
+}
+
+.service-detailed-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.service-detailed-icon-wrapper {
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-detail-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--white);
+}
+
+.service-detailed-title-section {
+  flex: 1;
+}
+
+.service-detailed-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-blue);
+}
+
+.service-detailed-subtitle {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 500;
+  margin: 0;
+}
+
+.service-detailed-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.service-detailed-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--medium-gray);
+  margin-bottom: 2rem;
+}
+
+/* Service Info Grid */
+.service-info-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.service-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--light-gray);
+  border-radius: var(--border-radius);
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Benefits Section */
+.service-benefits h4,
+.service-features-section h4,
+.service-process h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--dark-blue);
+}
+
+.benefits-list,
+.service-features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.benefit-item,
+.service-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.benefit-check,
+.feature-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--secondary-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Process List */
+.process-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.process-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  padding: 1rem;
+  background: var(--light-gray);
+  border-radius: var(--border-radius);
+}
+
+.step-number {
+  background: var(--primary-color);
+  color: var(--white);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Service CTA */
+.service-cta {
+  margin-top: 2rem;
+}
+
+/* Pricing Section */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-light);
+  text-align: center;
+  position: relative;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.pricing-card.popular {
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.pricing-card.popular:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pricing-header {
+  margin-bottom: 2rem;
+}
+
+.pricing-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--dark-blue);
+}
+
+.pricing-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.pricing-description {
+  color: var(--medium-gray);
+  margin: 0;
+}
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.pricing-check {
+  width: 18px;
+  height: 18px;
+  color: var(--secondary-color);
+  flex-shrink: 0;
+}
+
+.pricing-cta {
+  width: 100%;
+}
+
+/* FAQ Section */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-light);
+}
+
+.faq-question {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--dark-blue);
+}
+
+.faq-answer {
+  color: var(--medium-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Services CTA Section */
+.services-cta-section {
+  background: var(--gradient-primary);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.services-cta-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.services-cta-description {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.services-cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .service-detailed-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .services-hero-stats {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .services-hero-description {
+    font-size: 1rem;
+  }
+  
+  .services-hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .service-detailed-card {
+    padding: 2rem;
+  }
+  
+  .service-detailed-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .service-detailed-title {
+    font-size: 1.8rem;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pricing-card.popular {
+    transform: none;
+  }
+  
+  .pricing-card.popular:hover {
+    transform: translateY(-5px);
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .services-cta-title {
+    font-size: 2rem;
+  }
+  
+  .services-cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-hero-title {
+    font-size: 2rem;
+  }
+  
+  .service-detailed-card {
+    padding: 1.5rem;
+  }
+  
+  .service-detailed-title {
+    font-size: 1.5rem;
+  }
+  
+  .service-info-item {
+    padding: 0.75rem;
+  }
+  
+  .pricing-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .faq-item {
+    padding: 1.5rem;
+  }
+}

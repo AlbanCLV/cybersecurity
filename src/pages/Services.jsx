@@ -252,8 +252,8 @@ const Services = () => {
   return (
     <div className="services-page">
       {/* Hero Section */}
-      <section className="services-hero">
-        <div className="container">
+      <section className="services-hero section-fullwidth">
+        <div className="container-narrow">
           <div className="services-hero-content">
             <h1 className="services-hero-title">Nos Services de Cybersécurité</h1>
             <p className="services-hero-description">

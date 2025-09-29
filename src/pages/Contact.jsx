@@ -52,8 +52,8 @@ const Contact = () => {
   return (
     <div className="contact-page">
       {/* Hero Section */}
-      <section className="contact-hero">
-        <div className="container">
+      <section className="contact-hero section-fullwidth">
+        <div className="container-narrow">
           <div className="contact-hero-content">
             <h1 className="contact-hero-title">Contactez-nous</h1>
             <p className="contact-hero-description">

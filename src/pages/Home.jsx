@@ -90,7 +90,7 @@ const Home = () => {
   return (
     <div className="home">
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero section-fullwidth">
         <div className="hero-background">
           <div className="hero-pattern"></div>
         </div>
@@ -156,7 +156,7 @@ const Home = () => {
 
       {/* Stats Section */}
       <section className="stats-section">
-        <div className="container">
+        <div className="container-narrow">
           <div className="stats-grid">
             {stats.map((stat, index) => (
               <div key={index} className="stat-card">
@@ -173,7 +173,7 @@ const Home = () => {
 
       {/* Services Section */}
       <section className="section">
-        <div className="container">
+        <div className="container-narrow">
           <div className="section-header">
             <h2 className="section-title">Nos Services de Cybersécurité</h2>
             <p className="section-description">
@@ -210,7 +210,7 @@ const Home = () => {
 
       {/* Methodology Section */}
       <section className="section section-light">
-        <div className="container">
+        <div className="container-narrow">
           <div className="section-header">
             <h2 className="section-title">Notre Méthodologie</h2>
             <p className="section-description">
@@ -232,7 +232,7 @@ const Home = () => {
 
       {/* Why Choose Us Section */}
       <section className="section">
-        <div className="container">
+        <div className="container-narrow">
           <div className="why-choose-us">
             <div className="why-content">
               <h2 className="section-title">Pourquoi Nous Choisir ?</h2>
@@ -294,8 +294,8 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section">
-        <div className="container">
+      <section className="cta-section section-fullwidth">
+        <div className="container-narrow">
           <div className="cta-content">
             <h2 className="cta-title">Prêt à Sécuriser Votre Entreprise ?</h2>
             <p className="cta-description">

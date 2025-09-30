@@ -334,7 +334,12 @@ const Contact = () => {
                   discuter de vos besoins en cybersécurité.
                 </p>
                 <div className="calendar-booking">
-                  <a href="#" className="btn btn-primary">
+                  <a 
+                    href="https://calendar.app.google/1zWUGC1NsTazGkEJ7" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                  >
                     <Calendar className="btn-icon" />
                     Réserver un créneau
                   </a>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   Globe, 
   Database, 
@@ -22,6 +22,7 @@ import {
 import './Services.css';
 
 const Services = () => {
+  const location = useLocation();
   const services = [
     {
       id: 'audit-web',
@@ -204,6 +205,22 @@ const Services = () => {
       deliverables: "Supports de formation, certificats, guide de bonnes pratiques"
     }
   ];
+
+  // Handle anchor scrolling
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        // Wait for the page to load completely
+        setTimeout(() => {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   const pricingPackages = [
     {

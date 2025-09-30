@@ -4,6 +4,11 @@
   margin-top: 70px;
 }
 
+/* Anchor scroll offset for fixed header */
+.service-detailed-card {
+  scroll-margin-top: 90px;
+}
+
 /* Hero Section */
 .services-hero {
   background: var(--gradient-dark);

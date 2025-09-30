@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Shield, ChevronDown } from 'lucide-react';
+import { scrollToAnchor } from '../utils/anchorUtils';
 import './Header.css';
 
 const Header = () => {
@@ -8,6 +9,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,18 +25,32 @@ const Header = () => {
     setIsServicesOpen(false);
   }, [location]);
 
+  const handleAnchorClick = (event, path, anchor) => {
+    event.preventDefault();
+    setIsServicesOpen(false);
+    setIsMenuOpen(false);
+    
+    if (location.pathname === path) {
+      // Same page, just scroll
+      scrollToAnchor(anchor);
+    } else {
+      // Different page, navigate then scroll
+      navigate(`${path}#${anchor}`);
+    }
+  };
+
   const navItems = [
     { path: '/', label: 'Accueil' },
     { 
       path: '/services', 
       label: 'Services',
       dropdown: [
-        { path: '/services#audit-web', label: 'Audit Web' },
-        { path: '/services#scan-ad', label: 'Scan Active Directory' },
-        { path: '/services#tests-fraude', label: 'Tests de Fraude' },
-        { path: '/services#phishing', label: 'Phishing Simulé' },
-        { path: '/services#suivi', label: 'Suivi Sécurité' },
-        { path: '/services#formation', label: 'Formation' }
+        { path: '/services', anchor: 'audit-web', label: 'Audit Web' },
+        { path: '/services', anchor: 'scan-ad', label: 'Scan Active Directory' },
+        { path: '/services', anchor: 'tests-fraude', label: 'Tests de Fraude' },
+        { path: '/services', anchor: 'phishing', label: 'Phishing Simulé' },
+        { path: '/services', anchor: 'suivi', label: 'Suivi Sécurité' },
+        { path: '/services', anchor: 'formation', label: 'Formation' }
       ]
     },
     { path: '/methodologie', label: 'Méthodologie' },
@@ -78,8 +94,12 @@ const Header = () => {
                       </Link>
                       <ul className={`dropdown-menu ${isServicesOpen ? 'open' : ''}`}>
                         {item.dropdown.map((subItem) => (
-                          <li key={subItem.path}>
-                            <a href={subItem.path} className="dropdown-link">
+                          <li key={`${subItem.path}#${subItem.anchor}`}>
+                            <a 
+                              href={`${subItem.path}#${subItem.anchor}`}
+                              className="dropdown-link"
+                              onClick={(e) => handleAnchorClick(e, subItem.path, subItem.anchor)}
+                            >
                               {subItem.label}
                             </a>
                           </li>
@@ -133,11 +153,11 @@ const Header = () => {
                 {item.dropdown && (
                   <ul className="nav-mobile-submenu">
                     {item.dropdown.map((subItem) => (
-                      <li key={subItem.path}>
+                      <li key={`${subItem.path}#${subItem.anchor}`}>
                         <a 
-                          href={subItem.path} 
+                          href={`${subItem.path}#${subItem.anchor}`}
                           className="nav-mobile-sublink"
-                          onClick={() => setIsMenuOpen(false)}
+                          onClick={(e) => handleAnchorClick(e, subItem.path, subItem.anchor)}
                         >
                           {subItem.label}
                         </a>

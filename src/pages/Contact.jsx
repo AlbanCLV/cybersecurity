@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { 
   Mail, 
   Phone, 
@@ -13,31 +14,57 @@ import {
 import './Contact.css';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    service: '',
-    message: '',
-    urgency: 'normal'
-  });
+  const [state, handleSubmit] = useForm("meorglnd");
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Ici vous pourriez intégrer avec un service d'email ou une API
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-  };
+  if (state.succeeded) {
+    return (
+      <div className="contact-page">
+        {/* Hero Section */}
+        <section className="contact-hero section-fullwidth">
+          <div className="container-narrow">
+            <div className="contact-hero-content">
+              <h1 className="contact-hero-title">Merci pour votre demande !</h1>
+              <p className="contact-hero-description">
+                Nous avons bien reçu votre message et vous recontacterons dans les plus brefs délais.
+              </p>
+              <div className="hero-benefits">
+                <div className="hero-benefit">
+                  <CheckCircle className="benefit-icon" />
+                  <span>Message envoyé avec succès</span>
+                </div>
+                <div className="hero-benefit">
+                  <Clock className="benefit-icon" />
+                  <span>Réponse sous 24h</span>
+                </div>
+                <div className="hero-benefit">
+                  <Shield className="benefit-icon" />
+                  <span>Audit gratuit disponible</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section className="section">
+          <div className="container">
+            <div className="contact-success">
+              <CheckCircle className="success-icon" />
+              <h3>Votre demande a été envoyée !</h3>
+              <p>
+                Nous vous recontacterons rapidement pour discuter de votre projet de cybersécurité.
+              </p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="btn btn-primary"
+              >
+                Envoyer une autre demande
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   const services = [
     'Audit d\'applications web',
@@ -92,147 +119,157 @@ const Contact = () => {
                 </p>
               </div>
 
-              {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="contact-form">
-                  <div className="form-grid">
-                    <div className="form-group">
-                      <label htmlFor="name" className="form-label">
-                        Nom complet *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="form-input"
-                        placeholder="Votre nom et prénom"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="email" className="form-label">
-                        Email professionnel *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="form-input"
-                        placeholder="votre.email@entreprise.com"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="company" className="form-label">
-                        Entreprise *
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        required
-                        className="form-input"
-                        placeholder="Nom de votre entreprise"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="phone" className="form-label">
-                        Téléphone
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="form-input"
-                        placeholder="+33 1 23 45 67 89"
-                      />
-                    </div>
-                  </div>
-
+              <form onSubmit={handleSubmit} className="contact-form">
+                <div className="form-grid">
                   <div className="form-group">
-                    <label htmlFor="service" className="form-label">
-                      Service souhaité *
+                    <label htmlFor="name" className="form-label">
+                      Nom complet *
                     </label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
                       required
-                      className="form-select"
-                    >
-                      <option value="">Sélectionnez un service</option>
-                      {services.map((service, index) => (
-                        <option key={index} value={service}>
-                          {service}
-                        </option>
-                      ))}
-                    </select>
+                      className="form-input"
+                      placeholder="Votre nom et prénom"
+                    />
+                    <ValidationError 
+                      prefix="Name" 
+                      field="name"
+                      errors={state.errors}
+                    />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="urgency" className="form-label">
-                      Niveau d'urgence
+                    <label htmlFor="email" className="form-label">
+                      Email professionnel *
                     </label>
-                    <select
-                      id="urgency"
-                      name="urgency"
-                      value={formData.urgency}
-                      onChange={handleChange}
-                      className="form-select"
-                    >
-                      <option value="normal">Normal (réponse sous 48h)</option>
-                      <option value="urgent">Urgent (réponse sous 24h)</option>
-                      <option value="emergency">Urgence (réponse immédiate)</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="message" className="form-label">
-                      Décrivez votre besoin *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
                       required
-                      rows="5"
-                      className="form-textarea"
-                      placeholder="Décrivez votre infrastructure, vos préoccupations de sécurité, ou toute information qui nous aiderait à mieux comprendre votre besoin..."
-                    ></textarea>
+                      className="form-input"
+                      placeholder="votre.email@entreprise.com"
+                    />
+                    <ValidationError 
+                      prefix="Email" 
+                      field="email"
+                      errors={state.errors}
+                    />
                   </div>
 
-                  <button type="submit" className="btn btn-primary btn-large form-submit">
-                    Envoyer ma demande
-                    <Send className="btn-icon" />
-                  </button>
-                </form>
-              ) : (
-                <div className="contact-success">
-                  <CheckCircle className="success-icon" />
-                  <h3>Merci pour votre demande !</h3>
-                  <p>
-                    Nous avons bien reçu votre message et vous recontacterons dans les plus brefs délais.
-                  </p>
-                  <button 
-                    onClick={() => setIsSubmitted(false)}
-                    className="btn btn-outline"
-                  >
-                    Envoyer une autre demande
-                  </button>
+                  <div className="form-group">
+                    <label htmlFor="company" className="form-label">
+                      Entreprise *
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      required
+                      className="form-input"
+                      placeholder="Nom de votre entreprise"
+                    />
+                    <ValidationError 
+                      prefix="Company" 
+                      field="company"
+                      errors={state.errors}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="phone" className="form-label">
+                      Téléphone
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="form-input"
+                      placeholder="+33 1 23 45 67 89"
+                    />
+                    <ValidationError 
+                      prefix="Phone" 
+                      field="phone"
+                      errors={state.errors}
+                    />
+                  </div>
                 </div>
-              )}
+
+                <div className="form-group">
+                  <label htmlFor="service" className="form-label">
+                    Service souhaité *
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    required
+                    className="form-select"
+                  >
+                    <option value="">Sélectionnez un service</option>
+                    {services.map((service, index) => (
+                      <option key={index} value={service}>
+                        {service}
+                      </option>
+                    ))}
+                  </select>
+                  <ValidationError 
+                    prefix="Service" 
+                    field="service"
+                    errors={state.errors}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="urgency" className="form-label">
+                    Niveau d'urgence
+                  </label>
+                  <select
+                    id="urgency"
+                    name="urgency"
+                    className="form-select"
+                    defaultValue="normal"
+                  >
+                    <option value="normal">Normal (réponse sous 48h)</option>
+                    <option value="urgent">Urgent (réponse sous 24h)</option>
+                    <option value="emergency">Urgence (réponse immédiate)</option>
+                  </select>
+                  <ValidationError 
+                    prefix="Urgency" 
+                    field="urgency"
+                    errors={state.errors}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message" className="form-label">
+                    Décrivez votre besoin *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows="5"
+                    className="form-textarea"
+                    placeholder="Décrivez votre infrastructure, vos préoccupations de sécurité, ou toute information qui nous aiderait à mieux comprendre votre besoin..."
+                  ></textarea>
+                  <ValidationError 
+                    prefix="Message" 
+                    field="message"
+                    errors={state.errors}
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={state.submitting}
+                  className="btn btn-primary btn-large form-submit"
+                >
+                  {state.submitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+                  <Send className="btn-icon" />
+                </button>
+              </form>
             </div>
 
             {/* Contact Info */}

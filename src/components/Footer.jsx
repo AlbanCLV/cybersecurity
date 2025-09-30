@@ -1,18 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Shield, Mail, Phone, MapPin, Linkedin, Github, ExternalLink } from 'lucide-react';
+import { scrollToAnchor } from '../utils/anchorUtils';
 import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleAnchorClick = (event, path, anchor) => {
+    event.preventDefault();
+    
+    if (location.pathname === path) {
+      // Same page, just scroll
+      scrollToAnchor(anchor);
+    } else {
+      // Different page, navigate then scroll
+      navigate(`${path}#${anchor}`);
+    }
+  };
 
   const services = [
-    { name: 'Audit Web', path: '/services#audit-web' },
-    { name: 'Scan Active Directory', path: '/services#scan-ad' },
-    { name: 'Tests de Fraude', path: '/services#tests-fraude' },
-    { name: 'Phishing Simulé', path: '/services#phishing' },
-    { name: 'Suivi Sécurité', path: '/services#suivi' },
-    { name: 'Formation', path: '/services#formation' }
+    { name: 'Audit Web', path: '/services', anchor: 'audit-web' },
+    { name: 'Scan Active Directory', path: '/services', anchor: 'scan-ad' },
+    { name: 'Tests de Fraude', path: '/services', anchor: 'tests-fraude' },
+    { name: 'Phishing Simulé', path: '/services', anchor: 'phishing' },
+    { name: 'Suivi Sécurité', path: '/services', anchor: 'suivi' },
+    { name: 'Formation', path: '/services', anchor: 'formation' }
   ];
 
   const quickLinks = [
@@ -64,7 +79,11 @@ const Footer = () => {
               <ul className="footer-links">
                 {services.map((service) => (
                   <li key={service.name}>
-                    <a href={service.path} className="footer-link">
+                    <a 
+                      href={`${service.path}#${service.anchor}`}
+                      className="footer-link"
+                      onClick={(e) => handleAnchorClick(e, service.path, service.anchor)}
+                    >
                       {service.name}
                     </a>
                   </li>
